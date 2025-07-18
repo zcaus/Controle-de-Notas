@@ -638,6 +638,7 @@
                 if (result.error) {
                     throw new Error(`Erro do Apps Script: ${result.error} - ${result.details || ''}`);
                 }
+                
 
                 data = result;
                 console.log('3. loadDataFromGoogleSheet: Dados recarregados na variável "data". Total de itens:', data.length);
