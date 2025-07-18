@@ -621,7 +621,7 @@
 
         async function loadDataFromGoogleSheet() {
             console.log('2. loadDataFromGoogleSheet() foi chamada. Iniciando requisição GET...');
-            showAlert('Carregando dados da planilha online...', 'info');
+            showAlert('Carregando dados!', 'info');
             try {
                 const response = await fetch(APPS_SCRIPT_WEB_APP_URL, {
                     method: 'GET',
@@ -646,18 +646,18 @@
                     console.log(`Item ${i}: NF=${item.nf}, Qtd=${item.qtdOriginal}, Sep=${item.separado}, currentStage=${item.currentStage}, statusExpedicao=${item.statusExpedicao}, statusFinal=${item.status}`);
                 });
 
-                showAlert('Dados carregados com sucesso da planilha online!', 'success');
+                showAlert('Dados carregados com sucesso!', 'success');
                 updateDisplay();
 
             } catch (error) {
-                showAlert(`Erro ao carregar dados da planilha: ${error.message}`, 'danger');
+                showAlert(`Erro ao carregar dados: ${error.message}`, 'danger');
                 console.error('Erro ao carregar dados do Google Sheet:', error);
             }
         }
 
         async function updateItemInGoogleSheet(itemOrItemsToUpdate) {
             console.log('4. updateItemInGoogleSheet() foi chamada para salvar. Dados a enviar:', itemOrItemsToUpdate);
-            showAlert('Salvando alterações na planilha online...', 'info');
+            showAlert('Salvando alterações...', 'info');
             try {
                 const response = await fetch(APPS_SCRIPT_WEB_APP_URL, {
                     method: 'POST',
@@ -676,12 +676,12 @@
                     throw new Error(`Erro do Apps Script ao salvar: ${result.error} - ${result.details || ''}`);
                 }
 
-                showAlert(result.message || 'Dados salvos com sucesso na planilha online!', 'success');
+                showAlert(result.message || 'Dados salvos com sucesso!', 'success');
                 console.log('5. updateItemInGoogleSheet: Salvamento bem-sucedido. Recarregando dados...');
                 await loadDataFromGoogleSheet();
 
             } catch (error) {
-                showAlert(`Erro ao salvar dados na planilha: ${error.message}`, 'danger');
+                showAlert(`Erro ao salvar dados: ${error.message}`, 'danger');
                 console.error('Erro ao salvar dados no Google Sheet:', error);
             }
         }
